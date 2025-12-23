@@ -1,0 +1,141 @@
+ion-content {
+  --background: linear-gradient(to bottom, #e3f2fd 0%, #f5f5f5 100%);
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  
+  ion-spinner {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: #666;
+    font-size: 16px;
+  }
+}
+
+.error-icon {
+  font-size: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.stats-card {
+  margin: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  ion-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: 10px;
+    
+    ion-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .stat-city {
+      font-size: 11px;
+      color: #999;
+      margin-top: 2px;
+    }
+  }
+}
+
+.weather-card {
+  margin: 12px 16px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  ion-card-content {
+    padding: 16px;
+  }
+  
+  .weather-icon {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+  }
+  
+  .city-name {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .condition {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .temperature-col {
+    text-align: right;
+  }
+  
+  .temp-badge {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 20px;
+  }
+  
+  .details-row {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #666;
+    
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+// Responsive design
+@media (min-width: 768px) {
+  .stats-card,
+  .weather-card {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

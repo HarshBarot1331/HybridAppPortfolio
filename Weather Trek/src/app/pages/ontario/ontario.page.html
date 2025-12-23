@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Ontario Weather</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading Ontario weather...</p>
+  </div>
+
+  <ion-card *ngIf="errorMessage && !isLoading" color="danger">
+    <ion-card-content>
+      <ion-icon name="alert-circle" class="error-icon"></ion-icon>
+      {{ errorMessage }}
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="!isLoading && ontarioCities.length > 0">
+    
+    <ion-card class="info-card">
+      <ion-card-content>
+        <div class="province-header">
+          <ion-icon name="location" color="light"></ion-icon>
+          <h2>Ontario Province</h2>
+        </div>
+        <p class="province-info">{{ getProvinceInfo() }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="stats-card">
+      <ion-card-header>
+        <ion-card-title>Ontario Weather Summary</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <div class="stat-item">
+                <ion-icon name="thermometer" color="primary"></ion-icon>
+                <div class="stat-label">Average</div>
+                <div class="stat-value">{{ averageTemp }}°C</div>
+              </div>
+            </ion-col>
+            <ion-col size="4">
+              <div class="stat-item">
+                <ion-icon name="flame" color="danger"></ion-icon>
+                <div class="stat-label">Highest</div>
+                <div class="stat-value">{{ highestTemp }}°C</div>
+              </div>
+            </ion-col>
+            <ion-col size="4">
+              <div class="stat-item">
+                <ion-icon name="snow" color="primary"></ion-icon>
+                <div class="stat-label">Lowest</div>
+                <div class="stat-value">{{ lowestTemp }}°C</div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="cities-header">
+      <h3>Ontario Cities</h3>
+      <ion-badge color="primary">{{ ontarioCities.length }} Cities</ion-badge>
+    </div>
+
+    <ion-card *ngFor="let weather of ontarioCities" class="weather-card" (click)="viewDetails(weather.city)">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="3">
+              <img [src]="getWeatherIcon(weather.icon)" [alt]="weather.condition" class="weather-icon" />
+            </ion-col>
+            <ion-col size="5">
+              <h2 class="city-name">{{ weather.city }}</h2>
+              <p class="condition">{{ weather.condition }}</p>
+            </ion-col>
+            <ion-col size="4" class="temperature-col">
+              <ion-badge [color]="getTemperatureColor(weather.temperature)" class="temp-badge">
+                {{ weather.temperature }}°C
+              </ion-badge>
+            </ion-col>
+          </ion-row>
+          <ion-row class="details-row">
+            <ion-col size="6">
+              <div class="detail-item">
+                <ion-icon name="water" color="primary"></ion-icon>
+                <span>Humidity: {{ weather.humidity }}%</span>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="detail-item">
+                <ion-icon name="speedometer" color="medium"></ion-icon>
+                <span>Wind: {{ weather.windSpeed }} km/h</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

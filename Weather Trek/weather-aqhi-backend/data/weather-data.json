@@ -1,0 +1,124 @@
+{
+  "cities": [
+    {
+      "city": "Toronto",
+      "temperature": 15,
+      "condition": "Partly Cloudy",
+      "humidity": 65,
+      "windSpeed": 12,
+      "icon": "02d",
+      "latitude": 43.6532,
+      "longitude": -79.3832,
+      "province": "Ontario",
+      "population": 2731571,
+      "timezone": "America/Toronto"
+    },
+    {
+      "city": "Vancouver",
+      "temperature": 18,
+      "condition": "Rainy",
+      "humidity": 80,
+      "windSpeed": 15,
+      "icon": "10d",
+      "latitude": 49.2827,
+      "longitude": -123.1207,
+      "province": "British Columbia",
+      "population": 631486,
+      "timezone": "America/Vancouver"
+    },
+    {
+      "city": "Montreal",
+      "temperature": 12,
+      "condition": "Clear",
+      "humidity": 55,
+      "windSpeed": 8,
+      "icon": "01d",
+      "latitude": 45.5017,
+      "longitude": -73.5673,
+      "province": "Quebec",
+      "population": 1704694,
+      "timezone": "America/Toronto"
+    },
+    {
+      "city": "Calgary",
+      "temperature": 10,
+      "condition": "Cloudy",
+      "humidity": 60,
+      "windSpeed": 20,
+      "icon": "03d",
+      "latitude": 51.0447,
+      "longitude": -114.0719,
+      "province": "Alberta",
+      "population": 1239220,
+      "timezone": "America/Edmonton"
+    },
+    {
+      "city": "Ottawa",
+      "temperature": 14,
+      "condition": "Sunny",
+      "humidity": 50,
+      "windSpeed": 10,
+      "icon": "01d",
+      "latitude": 45.4215,
+      "longitude": -75.6972,
+      "province": "Ontario",
+      "population": 934243,
+      "timezone": "America/Toronto"
+    },
+    {
+      "city": "Edmonton",
+      "temperature": 8,
+      "condition": "Snowy",
+      "humidity": 70,
+      "windSpeed": 18,
+      "icon": "13d",
+      "latitude": 53.5461,
+      "longitude": -113.4938,
+      "province": "Alberta",
+      "population": 972223,
+      "timezone": "America/Edmonton"
+    },
+    {
+      "city": "Winnipeg",
+      "temperature": 5,
+      "condition": "Cloudy",
+      "humidity": 75,
+      "windSpeed": 22,
+      "icon": "04d",
+      "latitude": 49.8951,
+      "longitude": -97.1384,
+      "province": "Manitoba",
+      "population": 749534,
+      "timezone": "America/Winnipeg"
+    },
+    {
+      "city": "Quebec City",
+      "temperature": 11,
+      "condition": "Clear",
+      "humidity": 58,
+      "windSpeed": 9,
+      "icon": "01d",
+      "latitude": 46.8139,
+      "longitude": -71.2080,
+      "province": "Quebec",
+      "population": 531902,
+      "timezone": "America/Toronto"
+    }
+  ],
+  "lastUpdated": "2025-01-15T10:30:00Z",
+  "dataSource": "Mock Weather Data for Canadian Cities",
+  "version": "1.0",
+  "metadata": {
+    "totalCities": 8,
+    "provinces": [
+      "Ontario",
+      "British Columbia",
+      "Quebec",
+      "Alberta",
+      "Manitoba"
+    ],
+    "temperatureUnit": "Celsius",
+    "windSpeedUnit": "km/h",
+    "humidityUnit": "percentage"
+  }
+}

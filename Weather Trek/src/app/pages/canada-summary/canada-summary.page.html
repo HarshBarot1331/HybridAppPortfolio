@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Canada Weather Summary</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentActionSheet()">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+      <ion-button (click)="getMyLocationWeather()">
+        <ion-icon name="location"></ion-icon>
+      </ion-button>
+      <ion-button (click)="refresh()">
+        <ion-icon name="refresh"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading weather data...</p>
+  </div>
+
+  <!-- Error State -->
+  <ion-card *ngIf="errorMessage && !isLoading" color="danger">
+    <ion-card-content>
+      <ion-icon name="alert-circle" class="error-icon"></ion-icon>
+      {{ errorMessage }}
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Weather Data -->
+  <div *ngIf="!isLoading && weatherData.length > 0">
+    
+    <!-- Statistics Card -->
+    <ion-card class="stats-card">
+      <ion-card-header>
+        <ion-card-title>Canada Weather Statistics</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <div class="stat-item">
+                <ion-icon name="thermometer" color="primary"></ion-icon>
+                <div class="stat-label">Average Temp</div>
+                <div class="stat-value">{{ averageTemp }}°C</div>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="stat-item">
+                <ion-icon name="flame" color="danger"></ion-icon>
+                <div class="stat-label">Highest Temp</div>
+                <div class="stat-value">{{ highestTemp }}°C</div>
+                <div class="stat-city">{{ hottestCity }}</div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <div class="stat-item">
+                <ion-icon name="snow" color="primary"></ion-icon>
+                <div class="stat-label">Lowest Temp</div>
+                <div class="stat-value">{{ lowestTemp }}°C</div>
+                <div class="stat-city">{{ coldestCity }}</div>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="stat-item">
+                <ion-icon name="location" color="success"></ion-icon>
+                <div class="stat-label">Cities</div>
+                <div class="stat-value">{{ weatherData.length }}</div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- City Weather Cards -->
+    <ion-card *ngFor="let weather of weatherData" class="weather-card" (click)="viewDetails(weather.city)">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="3">
+              <img [src]="getWeatherIcon(weather.icon)" [alt]="weather.condition" class="weather-icon" />
+            </ion-col>
+            <ion-col size="5">
+              <h2 class="city-name">{{ weather.city }}</h2>
+              <p class="condition">{{ weather.condition }}</p>
+            </ion-col>
+            <ion-col size="4" class="temperature-col">
+              <ion-badge [color]="getTemperatureColor(weather.temperature)" class="temp-badge">
+                {{ weather.temperature }}°C
+              </ion-badge>
+            </ion-col>
+          </ion-row>
+          <ion-row class="details-row">
+            <ion-col size="6">
+              <div class="detail-item">
+                <ion-icon name="water" color="primary"></ion-icon>
+                <span>{{ weather.humidity }}%</span>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="detail-item">
+                <ion-icon name="speedometer" color="medium"></ion-icon>
+                <span>{{ weather.windSpeed }} km/h</span>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

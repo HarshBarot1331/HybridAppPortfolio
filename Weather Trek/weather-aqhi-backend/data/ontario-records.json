@@ -1,0 +1,40 @@
+{
+  "province": "Ontario",
+  "records": [
+    {
+      "city": "Toronto",
+      "date": "2025-01-15",
+      "temperature": 15,
+      "condition": "Partly Cloudy",
+      "humidity": 65,
+      "windSpeed": 12,
+      "aqhi": 3,
+      "historicalData": [
+        { "date": "2025-01-14", "temperature": 14, "condition": "Sunny" },
+        { "date": "2025-01-13", "temperature": 13, "condition": "Cloudy" },
+        { "date": "2025-01-12", "temperature": 12, "condition": "Rainy" }
+      ]
+    },
+    {
+      "city": "Ottawa",
+      "date": "2025-01-15",
+      "temperature": 14,
+      "condition": "Sunny",
+      "humidity": 50,
+      "windSpeed": 10,
+      "aqhi": 2,
+      "historicalData": [
+        { "date": "2025-01-14", "temperature": 13, "condition": "Partly Cloudy" },
+        { "date": "2025-01-13", "temperature": 12, "condition": "Sunny" },
+        { "date": "2025-01-12", "temperature": 11, "condition": "Clear" }
+      ]
+    }
+  ],
+  "statistics": {
+    "averageTemperature": 14.5,
+    "highestTemperature": 15,
+    "lowestTemperature": 14,
+    "totalRecords": 2
+  },
+  "lastUpdated": "2025-01-15T10:30:00Z"
+}

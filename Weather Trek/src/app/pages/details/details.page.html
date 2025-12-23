@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ city }} Weather</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading weather details...</p>
+  </div>
+
+  <!-- Error State -->
+  <ion-card *ngIf="errorMessage && !isLoading" color="danger">
+    <ion-card-content>
+      <ion-icon name="alert-circle" class="error-icon"></ion-icon>
+      {{ errorMessage }}
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Weather Details -->
+  <div *ngIf="!isLoading && weatherData" class="details-container">
+    
+    <!-- Main Weather Card -->
+    <ion-card class="main-weather-card">
+      <ion-card-content>
+        <div class="main-weather">
+          <img [src]="getWeatherIcon(weatherData.icon)" [alt]="weatherData.condition" class="large-icon" />
+          <div class="temperature-large">{{ weatherData.temperature }}°C</div>
+          <div class="condition-text">{{ weatherData.condition }}</div>
+          <div class="feels-like">Feels like {{ getFeelsLike() }}°C</div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Weather Details Grid -->
+    <ion-card class="details-grid-card">
+      <ion-card-header>
+        <ion-card-title>Current Conditions</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <div class="detail-box">
+                <ion-icon name="water" color="primary"></ion-icon>
+                <div class="detail-label">Humidity</div>
+                <div class="detail-value">{{ weatherData.humidity }}%</div>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="detail-box">
+                <ion-icon name="speedometer" color="medium"></ion-icon>
+                <div class="detail-label">Wind Speed</div>
+                <div class="detail-value">{{ weatherData.windSpeed }} km/h</div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <div class="detail-box">
+                <ion-icon name="eye" color="success"></ion-icon>
+                <div class="detail-label">Visibility</div>
+                <div class="detail-value">{{ getVisibility() }}</div>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="detail-box">
+                <ion-icon name="sunny" color="warning"></ion-icon>
+                <div class="detail-label">UV Index</div>
+                <div class="detail-value">{{ getUVIndex() }}</div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <div class="detail-box">
+                <ion-icon name="speedometer-outline" color="tertiary"></ion-icon>
+                <div class="detail-label">Pressure</div>
+                <div class="detail-value">{{ getPressure() }}</div>
+              </div>
+            </ion-col>
+            <ion-col size="6">
+              <div class="detail-box">
+                <ion-icon name="thermometer-outline" color="danger"></ion-icon>
+                <div class="detail-label">Feels Like</div>
+                <div class="detail-value">{{ getFeelsLike() }}°C</div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- 5-Day Forecast -->
+    <ion-card class="forecast-card">
+      <ion-card-header>
+        <ion-card-title>5-Day Forecast</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="forecast-list">
+          <div *ngFor="let day of forecast" class="forecast-item">
+            <div class="forecast-day">{{ day.day }}</div>
+            <img [src]="getWeatherIcon(day.icon)" [alt]="day.condition" class="forecast-icon" />
+            <div class="forecast-condition">{{ day.condition }}</div>
+            <ion-badge [color]="getTemperatureColor(day.temp)" class="forecast-temp">
+              {{ day.temp }}°C
+            </ion-badge>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>
